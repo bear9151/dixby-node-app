@@ -28,3 +28,22 @@ function getTweets() {
 	  }
 	});
 };
+
+// Function to get Spotify song
+
+function getSong() {
+	spotify.search({type: 'track', query: secondInput, limit: 1}, function (error, data) {
+		if (error) {
+			throw Error;
+		} else {
+			console.log("--------------------------------------------")
+			console.log("ARTIST(S) | " + data.tracks.items[0].album.artists[0].name);
+			console.log("TITLE | " + data.tracks.items[0].name);
+			console.log("LINK | " + data.tracks.items[0].preview_url);
+			console.log("ALBUM | " + data.tracks.items[0].album.name);
+			console.log("--------------------------------------------")
+		}
+	});
+};
+
+getSong();
