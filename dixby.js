@@ -5,6 +5,7 @@ var fs = require('fs'),
     twitter = require('twitter'),
 	myKeys = require("./keys.js"),
     spotify = require('spotify'),
+    chalk = require('chalk'),
     keyList = myKeys.twitterKeys,
     firstInput = process.argv[2],
     secondInput = process.argv[3],
@@ -30,20 +31,20 @@ function getTweets() {
 };
 
 // Function to get Spotify song
-
 function getSong() {
+	if (secondInput === undefined) {
+		secondInput = "The Sign Ace of Base";
+	};
 	spotify.search({type: 'track', query: secondInput, limit: 1}, function (error, data) {
 		if (error) {
 			throw Error;
 		} else {
 			console.log("--------------------------------------------")
-			console.log("ARTIST(S) | " + data.tracks.items[0].album.artists[0].name);
-			console.log("TITLE | " + data.tracks.items[0].name);
-			console.log("LINK | " + data.tracks.items[0].preview_url);
-			console.log("ALBUM | " + data.tracks.items[0].album.name);
+			console.log(chalk.bold("ARTIST(S) | ") + data.tracks.items[0].album.artists[0].name);
+			console.log(chalk.bold("TITLE | ") + data.tracks.items[0].name);
+			console.log(chalk.bold("LINK | ") + chalk.blue.underline(data.tracks.items[0].preview_url));
+			console.log(chalk.bold("ALBUM | ") + data.tracks.items[0].album.name);
 			console.log("--------------------------------------------")
-		}
+		};
 	});
 };
-
-getSong();
