@@ -48,3 +48,31 @@ function getSong() {
 		};
 	});
 };
+
+// Function to get Movie
+function getMovie() {
+	if (secondInput === undefined) {
+		secondInput = "MrNobody";
+	};
+	var queryUrl = 'http://www.omdbapi.com/?t=' + secondInput + '&tomatoes=true';
+	request(queryUrl, function (error, response, dataRaw) {
+		var data = JSON.parse(dataRaw)
+		if (error) {
+			throw Error;
+		} else {
+			console.log("--------------------------------------------")
+			console.log(chalk.bold('TITLE | ') + data.Title);
+			console.log(chalk.bold('YEAR | ') + data.Year);
+			console.log(chalk.bold('RATING | ') + data.imdbRating);
+			console.log(chalk.bold('COUNTRY | ') + data.Country);
+			console.log(chalk.bold('LANGUAGE(S) | ') + data.Language);
+			console.log(chalk.bold('PLOT | ') + data.Plot);
+			console.log(chalk.bold('ACTORS | ') + data.Actors);
+			console.log(chalk.bold('ROTTEN TOMATOES | ') + data.tomatoRating);
+			console.log(chalk.bold('ROTTEN TOMATOES LINK | ') + chalk.blue.underline(data.tomatoURL));
+			console.log("--------------------------------------------")
+		};
+	});
+};
+
+getMovie();
