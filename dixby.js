@@ -75,4 +75,42 @@ function getMovie() {
 	});
 };
 
-getMovie();
+// Function for "Do What it says"
+function doWhat () {
+	fs.readFile('random.txt', 'utf8', doWhatCallback);
+	function doWhatCallback(err, data) {
+	    if (err)
+	        throw err;
+	    var array = data.split(',');
+    	firstInput = array[0].trim();
+    	secondInput = array[1].trim();
+	}
+}
+
+// Switch function to determine what to do
+switch (firstInput) {
+    case "my-tweets":
+        console.log('Getting tweets...');
+        getTweets();
+        break;
+
+    case "spotify-this-song":
+        console.log('Getting song...');
+        getSong();
+        break;
+
+    case "movie-this":
+        console.log('Getting movie...');
+        getMovie();
+        break;
+
+    case "do-what-it-says":
+        console.log('Doing what it says...');
+        doWhat();
+        break;
+}
+
+// getMovie();
+// getSong();
+// getTweets();
+// doWhat();
