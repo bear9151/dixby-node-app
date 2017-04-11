@@ -9,10 +9,6 @@ var fs = require('fs'),
     keyList = myKeys.twitterKeys,
     firstInput = process.argv[2],
     secondInput = process.argv[3],
-    tweetRequest = "my-tweets",
-    songRequest = "spotify-this-song",
-    movieRequest = "movie-this",
-    commandRequest = "do-what-it-says",
     login = {screen_name: 'bear9151', count: 20},
     client = new twitter(keyList);
 
@@ -84,6 +80,23 @@ function doWhat () {
 	    var array = data.split(',');
     	firstInput = array[0].trim();
     	secondInput = array[1].trim();
+    	console.log("yo");
+		switch (firstInput) {
+		    case "my-tweets":
+		        console.log('Getting tweets...');
+		        getTweets();
+		        break;
+
+		    case "spotify-this-song":
+		        console.log('Getting song...');
+		        getSong();
+		        break;
+
+		    case "movie-this":
+		        console.log('Getting movie...');
+		        getMovie();
+		        break;
+		}
 	}
 }
 
@@ -110,6 +123,7 @@ switch (firstInput) {
         break;
 }
 
+// Below, used for testing:
 // getMovie();
 // getSong();
 // getTweets();
